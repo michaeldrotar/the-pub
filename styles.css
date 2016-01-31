@@ -1,0 +1,76 @@
+
+
+.controls {
+  background-color: #dcd3c4;
+  bottom: 0;
+  left: 0;
+  height: 48px;
+  margin: 0;
+  position: fixed;
+  right: 0;
+}
+
+.controls .form-control {
+
+}
+
+.messages {
+  background-color: #dfded4;
+  bottom: 148px;
+  color: #432f21;
+  left: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  overflow: auto;
+  right: 0;
+  top: 0;
+}
+
+.messages li {
+  /*border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-top: 1px solid rgba(255,255,255,0.1);*/
+  /*border-top: 1px solid #dcd3c4;*/
+  padding: 8px 16px;
+  position: relative;
+}
+
+.message li:first-child {
+  border-top-style: none;
+}
+
+.messages li div {
+  clear: both;
+}
+
+.messages li .user-name {
+  color: #e29829;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.timestamp {
+  color: rgba(0,0,0,0.5);
+  font-size: 0.8em;
+  text-align: right;
+}
+
+.users {
+  background-color: #dfded4;
+  border-top: 1px solid #dcd3c4;
+  bottom: 48px;
+  color: #432f21;
+  height: 100px;
+  left: 0;
+  list-style-type: none;
+  margin: 0;
+  overflow: auto;
+  padding: 0;
+  position: fixed;
+  right: 0;
+}
+
+.users li {
+  padding: 4px 8px;
+}

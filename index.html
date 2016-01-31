@@ -1,0 +1,55 @@
+<!doctype html>
+<html ng-app="PubApp">
+  <head>
+    <title>The Pub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body ng-controller="PubCtrl" style="display: none">
+    <!--
+    [message log]                         [Users]
+    [timestamp] User: message             Name (stylized)
+    -->
+    <div class="container-fluid">
+      <ul class="messages" sticky-bottom="true">
+        <li>
+          Welcome to <strong>The Pub</strong>!<br />
+          To change your name, type /name followed by the new name you'd like.
+        </li>
+        <li ng-repeat="message in messages">
+          <div ng-if="message.type == 'hello'" class="system-message">
+            <div>{{message.user.name}} has joined.</div>
+          </div>
+          <div ng-if="message.type == 'goodbye'" class="system-message">
+            <div>{{message.user.name}} has left.</div>
+          </div>
+          <div ng-if="message.type == 'disconnect'" class="system-message">
+            <div>Connection lost.. please wait.</div>
+          </div>
+          <div ng-if="message.type == 'say'">
+            <span class="user-name">{{message.user.name}}</span>
+            <div>{{message.text}}</div>
+            <div ng-repeat="text in message.extras track by $index">{{text}}</div>
+          </div>
+          <div ng-if="message.type == 'timestamp'" class="timestamp">{{message.timestamp | ago}}</div>
+        </li>
+      </ul>
+      <form class="controls form-inline" ng-submit="send()">
+        <input class="form-control" ng-model='message'>
+        <button class="btn btn-primary">Send</button>
+      </form>
+      <ul class="users" sticky-bottom>
+        <li ng-repeat="user in users | filterBy: { connected: true }">
+          {{ user.name }} <span ng-if="user == $parent.user">(you)</span>
+        </li>
+      </ul>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="node_modules/lodash/lodash.js"></script>
+    <script src="node_modules/moment/min/moment.min.js"></script>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-cookies/angular-cookies.min.js"></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
